@@ -65,9 +65,7 @@
     </target>
 
     <target name="run-win64" depends="dist-win64">
-        <java jar="${win64.dir}/${ant.project.name}.jar" fork="true">
-            <jvmarg value="-Djava.library.path=${win64.dir}/lib/"/>
-        </java>
+        <java jar="${win64.dir}/${ant.project.name}.jar" fork="true" dir="${win64.dir}"/>
     </target>
 
 
@@ -88,9 +86,7 @@
     </target>
 
     <target name="run-win32" depends="dist-win32">
-        <java jar="${win32.dir}/${ant.project.name}.jar" fork="true">
-            <jvmarg value="-Djava.library.path=${win32.dir}/lib/"/>
-        </java>
+        <java jar="${win32.dir}/${ant.project.name}.jar" fork="true" dir="${win32.dir}"/>
     </target>
 
 
@@ -111,9 +107,7 @@
     </target>
 
     <target name="run-linux64" depends="dist-linux64">
-        <java jar="${linux64.dir}/${ant.project.name}.jar" fork="true">
-            <jvmarg value="-Djava.library.path=${linux64.dir}/lib/"/>
-        </java>
+        <java jar="${linux64.dir}/${ant.project.name}.jar" fork="true" dir="${linux64.dir}"/>
     </target>
 
 
@@ -134,9 +128,7 @@
     </target>
 
     <target name="run-linux32" depends="dist-linux32">
-        <java jar="${linux32.dir}/${ant.project.name}.jar" fork="true">
-            <jvmarg value="-Djava.library.path=${linux32.dir}/lib/"/>
-        </java>
+        <java jar="${linux32.dir}/${ant.project.name}.jar" fork="true" dir="${linux32.dir}"/>
     </target>
 
 
@@ -157,8 +149,6 @@
     </target>
 
     <target name="run-mac" depends="dist-mac">
-        <java jar="${mac.dir}/${ant.project.name}.jar" fork="true">
-            <jvmarg value="-Djava.library.path=${mac.dir}/lib/"/>
-        </java>
+        <java jar="${mac.dir}/${ant.project.name}.jar" fork="true" dir="${mac.dir}"/>
     </target>
 </project>
