@@ -16,13 +16,13 @@
     <property name="mac.dir"     value="${dist.dir}/mac"/>
 
 
-    <!-- add your operating system here (ex. depends="clean,jar,run-win64") -->
+    <!-- add your operating system here (ex. depends="clean,jar,dist-win64") -->
     <target name="main" depends="clean,jar"/>
 
 
     <target name="clean">
-        <delete dir="${bin.dir}"/>
-        <delete dir="${dist.dir}"/>
+        <delete dir="${bin.dir}" quiet="true"/>
+        <delete dir="${dist.dir}" quiet="true"/>
     </target>
 
     <target name="compile">
@@ -133,7 +133,7 @@
         </copy>
     </target>
 
-    <target name="run-linux32" depends="dist-linux64">
+    <target name="run-linux32" depends="dist-linux32">
         <java jar="${linux32.dir}/${ant.project.name}.jar" fork="true">
             <jvmarg value="-Djava.library.path=${linux32.dir}/lib/"/>
         </java>
@@ -156,7 +156,7 @@
         </copy>
     </target>
 
-    <target name="run-mac" depends="dist-win64">
+    <target name="run-mac" depends="dist-mac">
         <java jar="${mac.dir}/${ant.project.name}.jar" fork="true">
             <jvmarg value="-Djava.library.path=${mac.dir}/lib/"/>
         </java>
