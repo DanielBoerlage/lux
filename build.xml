@@ -1,0 +1,164 @@
+<project name="lux" default="main" basedir=".">
+
+    <property name="src.dir"     value="src"/>
+    <property name="bin.dir"     value="bin"/>
+    <property name="jar.dir"     value="${bin.dir}/jar"/>
+    <property name="res.dir"     value="res"/>
+    <property name="classes.dir" value="${bin.dir}/classes"/>
+    <property name="main-class"  value="${ant.project.name}.Main"/>
+    <property name="lib.dir"     value="lib"/>
+
+    <property name="dist.dir"    value="dist"/>
+    <property name="win64.dir"   value="${dist.dir}/win64"/>
+    <property name="win32.dir"   value="${dist.dir}/win32"/>
+    <property name="linux64.dir" value="${dist.dir}/linux64"/>
+    <property name="linux32.dir" value="${dist.dir}/linux32"/>
+    <property name="mac.dir"     value="${dist.dir}/mac"/>
+
+
+    <!-- add your operating system here (ex. depends="clean,jar,run-win64") -->
+    <target name="main" depends="clean,jar"/>
+
+
+    <target name="clean">
+        <delete dir="${bin.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" source="1.7" target="1.7">
+            <classpath>
+                <pathelement path="${lib.dir}/lwjgl/jar/lwjgl.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Class-Path" value="lib/lwjgl.jar"/>
+                <attribute name="Main-Class" value="${main-class}"/>
+            </manifest>
+            <fileset dir="${res.dir}"/>
+        </jar>
+    </target>
+
+    <target name="dist" depends="dist-win64,dist-win32,dist-linux64,dist-linux32,dist-mac"/>
+
+
+
+    <!-- windows 64 -->
+
+    <target name="dist-win64">
+        <mkdir dir="${win64.dir}/lib"/>
+        <copy todir="${win64.dir}">
+            <fileset file="${jar.dir}/${ant.project.name}.jar"/>
+            <fileset file="LICENSE"/>
+            <fileset file="README.md"/>
+        </copy>
+        <copy todir="${win64.dir}/lib">
+            <fileset dir="${lib.dir}/lwjgl/native/windows/x64/"/>
+            <fileset file="${lib.dir}/lwjgl/jar/lwjgl.jar"/>
+        </copy>
+    </target>
+
+    <target name="run-win64" depends="dist-win64">
+        <java jar="${win64.dir}/${ant.project.name}.jar" fork="true">
+            <jvmarg value="-Djava.library.path=${win64.dir}/lib/"/>
+        </java>
+    </target>
+
+
+
+    <!-- windows 32 -->
+
+    <target name="dist-win32">
+        <mkdir dir="${win32.dir}/lib"/>
+        <copy todir="${win32.dir}">
+            <fileset file="${jar.dir}/${ant.project.name}.jar"/>
+            <fileset file="LICENSE"/>
+            <fileset file="README.md"/>
+        </copy>
+        <copy todir="${win32.dir}/lib">
+            <fileset dir="${lib.dir}/lwjgl/native/windows/x86/"/>
+            <fileset file="${lib.dir}/lwjgl/jar/lwjgl.jar"/>
+        </copy>
+    </target>
+
+    <target name="run-win32" depends="dist-win32">
+        <java jar="${win32.dir}/${ant.project.name}.jar" fork="true">
+            <jvmarg value="-Djava.library.path=${win32.dir}/lib/"/>
+        </java>
+    </target>
+
+
+
+    <!-- linux 64 -->
+
+    <target name="dist-linux64">
+        <mkdir dir="${linux64.dir}/lib"/>
+        <copy todir="${linux64.dir}">
+            <fileset file="${jar.dir}/${ant.project.name}.jar"/>
+            <fileset file="LICENSE"/>
+            <fileset file="README.md"/>
+        </copy>
+        <copy todir="${linux64.dir}/lib">
+            <fileset dir="${lib.dir}/lwjgl/native/linux/x64/"/>
+            <fileset file="${lib.dir}/lwjgl/jar/lwjgl.jar"/>
+        </copy>
+    </target>
+
+    <target name="run-linux64" depends="dist-linux64">
+        <java jar="${linux64.dir}/${ant.project.name}.jar" fork="true">
+            <jvmarg value="-Djava.library.path=${linux64.dir}/lib/"/>
+        </java>
+    </target>
+
+
+
+    <!-- linux 32 -->
+
+    <target name="dist-linux32">
+        <mkdir dir="${linux32.dir}/lib"/>
+        <copy todir="${linux32.dir}">
+            <fileset file="${jar.dir}/${ant.project.name}.jar"/>
+            <fileset file="LICENSE"/>
+            <fileset file="README.md"/>
+        </copy>
+        <copy todir="${linux32.dir}/lib">
+            <fileset dir="${lib.dir}/lwjgl/native/linux/x86/"/>
+            <fileset file="${lib.dir}/lwjgl/jar/lwjgl.jar"/>
+        </copy>
+    </target>
+
+    <target name="run-linux32" depends="dist-linux64">
+        <java jar="${linux32.dir}/${ant.project.name}.jar" fork="true">
+            <jvmarg value="-Djava.library.path=${linux32.dir}/lib/"/>
+        </java>
+    </target>
+
+
+
+    <!-- mac (lol ya right) -->
+
+    <target name="dist-mac">
+        <mkdir dir="${mac.dir}/lib"/>
+        <copy todir="${mac.dir}">
+            <fileset file="${jar.dir}/${ant.project.name}.jar"/>
+            <fileset file="LICENSE"/>
+            <fileset file="README.md"/>
+        </copy>
+        <copy todir="${mac.dir}/lib">
+            <fileset dir="${lib.dir}/lwjgl/native/macosx/x64/"/>
+            <fileset file="${lib.dir}/lwjgl/jar/lwjgl.jar"/>
+        </copy>
+    </target>
+
+    <target name="run-mac" depends="dist-win64">
+        <java jar="${mac.dir}/${ant.project.name}.jar" fork="true">
+            <jvmarg value="-Djava.library.path=${mac.dir}/lib/"/>
+        </java>
+    </target>
+</project>
