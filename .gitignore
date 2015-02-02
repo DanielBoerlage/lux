@@ -1,3 +1,4 @@
-.atom-build.json
 bin/
 dist/
+.atom-build.json
+hs_err_pid*
