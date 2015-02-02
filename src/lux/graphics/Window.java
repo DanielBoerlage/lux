@@ -21,7 +21,7 @@ public class Window {
     private static boolean running;
 
     public static void init() {
-        if (glfwInit() != GL_TRUE) 
+        if (glfwInit() != GL_TRUE)
             Main.fatalError("Error initializing GLFW");
 
         glfwWindowHint(GLFW_SAMPLES, 4);
@@ -33,7 +33,7 @@ public class Window {
 
         //fullscreen
         if((window = glfwCreateWindow(1600, 900, "test", glfwGetPrimaryMonitor(), NULL)) == NULL)
-        Main.fatalError("Error creating a window");
+            Main.fatalError("Error creating a window");
 
         //if((window = glfwCreateWindow(1080, 720, "test", NULL, NULL)) == NULL)
         //    Main.fatalError("Error creating a window");
