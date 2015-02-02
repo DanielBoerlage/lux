@@ -17,15 +17,11 @@ public class Window {
 
 
     // Philip was here
-    // Philip was here
-    // Philip was here
-    // Philip was here
-    // Philip was here
     private static long window;
     private static boolean running;
 
     public static void init() {
-        if (glfwInit() != GL_TRUE)
+        if (glfwInit() != GL_TRUE) 
             Main.fatalError("Error initializing GLFW");
 
         glfwWindowHint(GLFW_SAMPLES, 4);
@@ -35,12 +31,12 @@ public class Window {
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-        //  fullscreen
-        // if((window = glfwCreateWindow(100, 100, "test", glfwGetPrimaryMonitor(), NULL)) == NULL)
-        //     Main.fatalError("Error creating a window");
+        //fullscreen
+        if((window = glfwCreateWindow(1600, 900, "test", glfwGetPrimaryMonitor(), NULL)) == NULL)
+        Main.fatalError("Error creating a window");
 
-        if((window = glfwCreateWindow(1080, 720, "test", NULL, NULL)) == NULL)
-            Main.fatalError("Error creating a window");
+        //if((window = glfwCreateWindow(1080, 720, "test", NULL, NULL)) == NULL)
+        //    Main.fatalError("Error creating a window");
 
 
         running = true;
