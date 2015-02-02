@@ -15,6 +15,12 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 public class Window {
 
+
+    // Philip was here
+    // Philip was here
+    // Philip was here
+    // Philip was here
+    // Philip was here
     private static long window;
     private static boolean running;
 
