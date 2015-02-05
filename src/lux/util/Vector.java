@@ -1,7 +1,6 @@
 package lux.util;
 
 import java.util.List;
-import lux.physics.Force;
 
 public class Vector {
 
@@ -18,30 +17,66 @@ public class Vector {
     }
 
     public Vector(Vector copyFrom) {
-        x = copyFrom.x;
-        y = copyFrom.y;
-        z = copyFrom.z;
+        this(copyFrom.x, copyFrom.y, copyFrom.z);
     }
 
-    public Vector add(Vector v) {
+    public void add(Vector v) {
         x += v.x;
         y += v.y;
         z += v.z;
-        return this;
+    }
+
+    public Vector scale(double d) {
+        return new Vector(x * d, y * d, z * d);
     }
 
     public static Vector plus(Vector v1, Vector v2) {
         return new Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
     }
 
-    public static Vector sum(Vector... vs) {
+    public static Vector sum(List<Vector> vs) {
         Vector out = new Vector();
         for(Vector v : vs)
             out.add(v);
         return out;
     }
 
-    public static Vector scale(Vector v, double d) {
-        return new Vector(v.x * d, v.y * d, v.z * d);
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getZ() {
+        return z;
+    }
+
+    public double magnitude() {
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+    }
+
+    public String direction() {
+        double magX = Math.abs(x);
+        double magY = Math.abs(y);
+        double magZ = Math.abs(z);
+
+        if(magX > magY && magX > magZ) {
+            if(x > 0)
+                return "EAST (+x)";
+            return "WEST (-x)";
+        }
+        if(magY > magX && magY > magZ) {
+            if(y > 0)
+                return "UP (+y)";
+            return "DOWN (-y)";
+        }
+        if(magZ > magX && magZ > magY) {
+            if(z > 0)
+                return "SOUTH (+z)";
+            return "NORTH (-z)";
+        }
+        return "ZERO";
     }
 }

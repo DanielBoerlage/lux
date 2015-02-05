@@ -1,5 +1,7 @@
 package lux;
 
+import lux.physics.Force;
+import lux.physics.Gravity;
 import lux.graphics.Window;
 import java.net.URISyntaxException;
 
@@ -8,9 +10,10 @@ import org.lwjgl.Sys;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		initNatives();
-		Window.init();
-		Window.terminate();
+		//System.out.println(new Force("gravity", 0.0, -1.0, 0.0));
+		//initNatives();
+		//Window.init();
+		//Window.terminate();
 	}
 
 	private static void initNatives() {

@@ -8,14 +8,24 @@ public abstract class Entity {
 
     protected Vector position, velocity, acceleration;
     protected double mass;
-    protected List<Force> forces;
+    protected List<Vector> forces;
 
-    public void accelerate(Time delta) {
-        acceleration = Vector.sum((Force[])forces.toArray());
-        velocity.add(Vector.scale(acceleration, delta.get()));
+    public Entity(double mass)  {
+        this.mass = mass;
+        forces.add(Gravity.force(this));
     }
 
-    public void displace(Time delta) {
-        position.add(Vector.scale(velocity, delta.get()));
+    public void update(double delta) {
+        velocity.add(Vector.sum(forces).scale(delta));
+        position.add(velocity.scale(delta));
+    }
+
+    public double getMass() {
+        return mass;
+    }
+
+    public void setMass(double mass) {
+        this.mass = mass;
+        // do some stuff or stuff so that it works better n stuff
     }
 }
