@@ -62,21 +62,25 @@ public class Vector {
         double magY = Math.abs(y);
         double magZ = Math.abs(z);
 
+        if(magX == 0 && magY == 0 && magZ == 0)
+            return "ZERO";
         if(magX > magY && magX > magZ) {
             if(x > 0)
                 return "EAST (+x)";
             return "WEST (-x)";
-        }
-        if(magY > magX && magY > magZ) {
-            if(y > 0)
-                return "UP (+y)";
-            return "DOWN (-y)";
         }
         if(magZ > magX && magZ > magY) {
             if(z > 0)
                 return "SOUTH (+z)";
             return "NORTH (-z)";
         }
-        return "ZERO";
+        if(y > 0)
+            return "UP (+y)";
+        return "DOWN (-y)";
+
+    }
+
+    public String toString() {
+        return String.format("%4.3f", magnitude()) + " " + direction();
     }
 }

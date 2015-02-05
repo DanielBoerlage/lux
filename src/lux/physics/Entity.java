@@ -4,6 +4,8 @@ import lux.util.Vector;
 
 import java.util.List;
 
+import static lux.physics.GravityField.EARTH;
+
 public abstract class Entity {
 
     protected Vector position, velocity, acceleration;
@@ -12,7 +14,7 @@ public abstract class Entity {
 
     public Entity(double mass)  {
         this.mass = mass;
-        forces.add(Gravity.force(this));
+        forces.add(EARTH.fg(mass));
     }
 
     public void update(double delta) {
@@ -26,6 +28,6 @@ public abstract class Entity {
 
     public void setMass(double mass) {
         this.mass = mass;
-        // do some stuff or stuff so that it works better n stuff
+
     }
 }
