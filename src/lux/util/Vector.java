@@ -57,14 +57,6 @@ public class Vector {
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
     }
 
-    public double xyAngle() {
-        return Math.atan2(y, x);
-    }
-
-    public double xzAngle() {
-        return Math.atan2(z, x);
-    }
-
     public String approxDirection() {
         double magX = Math.abs(x);
         double magY = Math.abs(y);

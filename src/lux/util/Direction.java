@@ -1,23 +1,34 @@
 package lux.util;
 
-import static lux.util.Utils.*;
+import lux.util.Utils;
 
 public class Direction extends Vector {
 
     public Direction() {
-        super();
+        super();  // this results in r of 0; change latter
     }
 
     public void rotateY(double delta) {
-        double r = 1;
-        double newAngle = bindRange(xyAngle() + delta, -HALF_PI, HALF_PI);
-
-        x = Math.cos(newAngle);
-        y = Math.sin(newAngle);
-        //z doesnt change?
+        double xzAngle = xzAngle();
+        double yAngle = yAngle();
+        x = Math.cos(xzAngle)*Math.cos(yAngle);
+        z = Math.sin(xzAngle)*Math.cos(yAngle);
+        y = Math.sin(yAngle);
     }
 
-    public void rotateZ(double delta) {
+    public void rotateXZ(double delta) {
+        double xzAngle = xzAngle();
+        double yAngle = yAngle();
+        x = Math.cos(xzAngle)*Math.cos(yAngle);
+        z = Math.sin(xzAngle)*Math.cos(yAngle);
+        y = Math.sin(yAngle);
+    }
 
+    public double yAngle() {
+        return Math.atan2(y, Math.hypot(x, z));
+    }
+
+    public double xzAngle() {
+        return Math.atan2(z, x);
     }
 }

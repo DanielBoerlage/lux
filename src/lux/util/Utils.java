@@ -8,5 +8,8 @@ public class Utils {
         return Math.min(Math.max(var, min), max);
     }
 
+    public static double normalizeAngle(double angle) {
+        if(angle < Math.PI && angle > -Math.PI)
+    }
 
 }
