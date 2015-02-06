@@ -57,13 +57,21 @@ public class Vector {
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
     }
 
-    public String direction() {
+    public double xyAngle() {
+        return Math.atan2(y, x);
+    }
+
+    public double xzAngle() {
+        return Math.atan2(z, x);
+    }
+
+    public String approxDirection() {
         double magX = Math.abs(x);
         double magY = Math.abs(y);
         double magZ = Math.abs(z);
 
         if(magX == 0 && magY == 0 && magZ == 0)
-            return "ZERO";
+            return "";
         if(magX > magY && magX > magZ) {
             if(x > 0)
                 return "EAST (+x)";
@@ -81,6 +89,6 @@ public class Vector {
     }
 
     public String toString() {
-        return String.format("%4.3f", magnitude()) + " " + direction();
+        return String.format("%4.3f", magnitude()) + " " + approxDirection();
     }
 }
