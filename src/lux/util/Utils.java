@@ -9,7 +9,8 @@ public class Utils {
     }
 
     public static double normalizeAngle(double angle) {
-        if(angle < Math.PI && angle > -Math.PI)
+        //if(angle < Math.PI && angle > -Math.PI);
+        return -1.0;
     }
 
 }

@@ -34,7 +34,7 @@ public class Vector {
         return new Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
     }
 
-    public static Vector sum(List<Vector> vs) {
+    public static Vector sum(List<? extends Vector> vs) {
         Vector out = new Vector();
         for(Vector v : vs)
             out.add(v);

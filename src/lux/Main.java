@@ -2,15 +2,18 @@ package lux;
 
 import lux.util.Vector;
 import lux.physics.GravityField;
+import lux.physics.Mass;
 import lux.graphics.Window;
 import java.net.URISyntaxException;
 
 import org.lwjgl.Sys;
 
+import java.math.BigInteger;
+
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		System.out.println(new Vector(-1.0, -1.0, -1.0));
+		System.out.println("compiles");
 		//initNatives();
 		//Window.init();
 		//Window.terminate();

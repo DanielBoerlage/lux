@@ -4,16 +4,14 @@ import lux.util.Vector;
 
 public class GravityField {
 
-    public static final GravityField EARTH = new GravityField(new Vector(0.0, -9.8, 0.0));
-
     private Vector g;
 
     public GravityField(Vector g) {
         this.g = g;
     }
 
-    public Vector fg(double mass) {
-        return g.scale(mass);
+    public Force force(Mass mass) {
+        return (Force)g.scale(mass.get());
     }
 }
 
@@ -22,3 +20,4 @@ public class GravityField {
 //wind
 //air resistance
 //elasticity
+//magnitism
