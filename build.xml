@@ -17,7 +17,7 @@
 
 
     <!-- add your operating system here (ex. depends="clean,jar,dist-win64") -->
-    <target name="main" depends="clean,jar,run-win64"/>
+    <target name="main" depends="clean"/>
 
 
     <target name="clean">

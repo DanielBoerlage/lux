@@ -14,8 +14,6 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 public class Window {
-
-
     // Philip was here
     private static long window;
     private static boolean running;
@@ -32,7 +30,6 @@ public class Window {
         // look into this
         //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-
 
         if((window = glfwCreateWindow(1600, 900, "test", glfwGetPrimaryMonitor(), NULL)) == NULL)
             Main.fatalError("Error creating a window");
@@ -59,15 +56,13 @@ public class Window {
         GLFWErrorCallback errorCallback;
         glfwSetErrorCallback(errorCallback = Callbacks.errorCallbackPrint(System.err));
 
-
-
         Game.setup();
 
         while(running && glfwWindowShouldClose(window) != GL_TRUE) {
-            // if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-            // {
-            //     running = false;
-            // }
+            if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+            {
+                running = false;
+            }
             Game.loop();
             glfwPollEvents();
             glfwSwapBuffers(window);
