@@ -13,10 +13,10 @@ import java.math.BigInteger;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("compiles");
-		//initNatives();
-		//Window.init();
-		//Window.terminate();
+		//System.out.println("compiles");
+		initNatives();
+		Window.init();
+		Window.terminate();
 	}
 
 	private static void initNatives() {
