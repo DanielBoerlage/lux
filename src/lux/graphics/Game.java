@@ -6,6 +6,9 @@ import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
 import org.lwjgl.BufferUtils.*;
 
+import java.nio.FloatBuffer;
+import org.lwjgl.BufferUtils;
+
 public class Game {
     public static void setup() {
         //match opengl view port with window size
@@ -30,16 +33,16 @@ public class Game {
             1f, -1f, 0f,
         };
 
-        FoatBuffer triBuffer = BufferUtils.createFloatBuffer(triangle.length);
+        FloatBuffer triBuffer = BufferUtils.createFloatBuffer(triangle.length);
         triBuffer.put(triangle);
         triBuffer.flip();
 
         // Create VAO and select it (bind)
-        vaoId = glGenVertexArrays();
+        int vaoId = glGenVertexArrays();
         glBindVertexArray(vaoId);
- 
+
         // Create VBO and select it (bind)
-        vboId = glGenBuffers();
+        int vboId = glGenBuffers();
 
         glBindBuffer(GL_ARRAY_BUFFER, vboId);
         glBufferData(GL_ARRAY_BUFFER, triBuffer, GL_STATIC_DRAW);
@@ -49,7 +52,7 @@ public class Game {
 
         // Deselect (bind to 0) the VBO
         glBindBuffer(GL_ARRAY_BUFFER, 0);
- 
+
         // Deselect (bind to 0) the VAO
         glBindVertexArray(0);
     }

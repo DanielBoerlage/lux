@@ -58,10 +58,10 @@ public class Window {
         Game.setup();
 
         while(running && glfwWindowShouldClose(window) != GL_TRUE) {
-            if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-            {
-                running = false;
-            }
+            // if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+            // {
+            //     running = false;
+            // }
             Game.loop();
             glfwPollEvents();
             glfwSwapBuffers(window);
