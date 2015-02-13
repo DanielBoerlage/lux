@@ -1,28 +1,56 @@
 package lux.graphics;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.*;
+import org.lwjgl.BufferUtils.*;
 
 public class Game {
     public static void setup() {
-    	//glMatrixMode(GL_PROJECTION);
-		//glLoadIdentity();
-		//glOrtho(0, 800, 0, 600, 1, -1);
-		//glMatrixMode(GL_MODELVIEW);
+        //match opengl view port with window size
+        glViewport(0, 0, 1600, 900);
+
+        //enable blending, can cause transpart objects to render oddly without
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        //sets screen to this color, RGBA, 0 - 1
+        glClearColor(0f, 0f, 0f, 0f);
     }
 
     public static void loop() {
-    	// Clear the screen and depth buffer
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        //clears screen buffer
+    	glClear(GL_COLOR_BUFFER_BIT);
 
-		// set the color of the quad (R,G,B,A)
-		//glColor3f(1f,0f,0f);
+        //expected counter clockeise
+        float[] triangle = {
+            -1f, -1f, 0f,
+            0f, 1f, 0f,
+            1f, -1f, 0f,
+        };
 
-		// draw quad
-		//glBegin(GL_QUADS);
-  		//glVertex2f(100, 100);
-    	//glVertex2f(300, 100);
-    	//glVertex2f(300, 300);
-    	//glVertex2f(100, 300);
-    	//glEnd();
+        FoatBuffer triBuffer = BufferUtils.createFloatBuffer(triangle.length);
+        triBuffer.put(triangle);
+        triBuffer.flip();
+
+        // Create VAO and select it (bind)
+        vaoId = glGenVertexArrays();
+        glBindVertexArray(vaoId);
+ 
+        // Create VBO and select it (bind)
+        vboId = glGenBuffers();
+
+        glBindBuffer(GL_ARRAY_BUFFER, vboId);
+        glBufferData(GL_ARRAY_BUFFER, triBuffer, GL_STATIC_DRAW);
+
+        // Put the VBO in the attributes list at index 0
+        glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
+
+        // Deselect (bind to 0) the VBO
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+ 
+        // Deselect (bind to 0) the VAO
+        glBindVertexArray(0);
     }
 }

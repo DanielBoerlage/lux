@@ -34,7 +34,6 @@ public class Window {
         if((window = glfwCreateWindow(1600, 900, "test", glfwGetPrimaryMonitor(), NULL)) == NULL)
             Main.fatalError("Error creating a window");
 
-
         running = true;
 
         glfwMakeContextCurrent(window);
