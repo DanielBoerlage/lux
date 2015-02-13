@@ -55,5 +55,34 @@ public class Game {
 
         // Deselect (bind to 0) the VAO
         glBindVertexArray(0);
+
+
+//      not final code |
+//                     V
+
+
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // Bind to the VAO that has all the information about the quad vertices
+        glBindVertexArray(vaoId);
+        glEnableVertexAttribArray(0);
+
+        // Draw the vertices
+        glDrawArrays(GL_TRIANGLES, 0, triangle.length);
+
+        // Put everything back to default (deselect)
+        glDisableVertexAttribArray(0);
+        glBindVertexArray(0);
+
+        // Disable the VBO index from the VAO attributes list
+        glDisableVertexAttribArray(0);
+
+        // Delete the VBO
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glDeleteBuffers(vboId);
+
+        // Delete the VAO
+        glBindVertexArray(0);
+        glDeleteVertexArrays(vaoId);
     }
 }
